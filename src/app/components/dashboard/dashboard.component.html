@@ -1,0 +1,147 @@
+<app-layout>
+      <div class="dashboard-header">
+        <h1>Dashboard</h1>
+        <p>Welcome back! Here's what's happening with your store today.</p>
+      </div>
+      
+      <!-- Statistics Cards -->
+      <div class="stats-grid">
+        <mat-card class="berry-card purple-box ">
+          <mat-card-content>
+            <div class="card-header">
+              <div class="icon-wrapper blue">
+                <mat-icon>trending_up</mat-icon>
+              </div>
+              <div class="card-menu">
+                <mat-icon>more_vert</mat-icon>
+              </div>
+            </div>
+            <div class="card-body">
+              <h2>$30,200</h2>
+              <p class="card-subtitle">All Earnings</p>
+              <div class="growth-indicator positive">
+                <mat-icon>trending_up</mat-icon>
+                <span>+ $20,4k this week</span>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+        
+        <mat-card class="berry-card">
+          <mat-card-content>
+            <div class="card-header">
+              <div class="icon-wrapper green">
+                <mat-icon>account_balance_wallet</mat-icon>
+              </div>
+              <div class="card-menu">
+                <mat-icon>more_vert</mat-icon>
+              </div>
+            </div>
+            <div class="card-body">
+              <h2>$145,263</h2>
+              <p class="card-subtitle">Page Views</p>
+              <div class="growth-indicator positive">
+                <mat-icon>trending_up</mat-icon>
+                <span>+ 5.25%</span>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+        
+        <mat-card class="berry-card">
+          <mat-card-content>
+            <div class="card-header">
+              <div class="icon-wrapper orange">
+                <mat-icon>monetization_on</mat-icon>
+              </div>
+              <div class="card-menu">
+                <mat-icon>more_vert</mat-icon>
+              </div>
+            </div>
+            <div class="card-body">
+              <h2>$50,032</h2>
+              <p class="card-subtitle">Total Task</p>
+              <div class="growth-indicator negative">
+                <mat-icon>trending_down</mat-icon>
+                <span>- 5.25%</span>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+        
+        <mat-card class="berry-card">
+          <mat-card-content>
+            <div class="card-header">
+              <div class="icon-wrapper purple">
+                <mat-icon>download</mat-icon>
+              </div>
+              <div class="card-menu">
+                <mat-icon>more_vert</mat-icon>
+              </div>
+            </div>
+            <div class="card-body">
+              <h2>$4,230</h2>
+              <p class="card-subtitle">Download</p>
+              <div class="growth-indicator positive">
+                <mat-icon>trending_up</mat-icon>
+                <span>+ $1,520 this week</span>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      
+      <!-- Charts and Analytics Section -->
+      <div class="analytics-section">
+        <div class="chart-row">
+          <mat-card class="berry-card large">
+            <mat-card-content>
+              <div class="card-header">
+                <h3>Total Growth</h3>
+                <div class="card-menu">
+                  <mat-icon>more_vert</mat-icon>
+                </div>
+              </div>
+              <div class="chart-placeholder">
+                <mat-icon>show_chart</mat-icon>
+                <p>Chart Area - Revenue Analytics</p>
+              </div>
+            </mat-card-content>
+          </mat-card>
+          
+          <mat-card class="berry-card">
+            <mat-card-content>
+              <div class="card-header">
+                <h3>Popular Stocks</h3>
+                <div class="card-menu">
+                  <mat-icon>more_vert</mat-icon>
+                </div>
+              </div>
+              <div class="stock-list">
+                <div class="stock-item">
+                  <div class="stock-info">
+                    <span class="stock-name">Bajaj Finsery</span>
+                    <span class="stock-price">$1839.00</span>
+                  </div>
+                  <span class="stock-change positive">+1.46%</span>
+                </div>
+                <div class="stock-item">
+                  <div class="stock-info">
+                    <span class="stock-name">TTML</span>
+                    <span class="stock-price">$100.00</span>
+                  </div>
+                  <span class="stock-change negative">-0.58%</span>
+                </div>
+                <div class="stock-item">
+                  <div class="stock-info">
+                    <span class="stock-name">Reliance</span>
+                    <span class="stock-price">$200.00</span>
+                  </div>
+                  <span class="stock-change positive">+1.67%</span>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+</app-layout>

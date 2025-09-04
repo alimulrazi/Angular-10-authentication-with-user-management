@@ -1,0 +1,32 @@
+<mat-toolbar color="primary">
+  <span>Buddi Dashboard</span>
+  <span class="spacer"></span>
+
+  <button mat-button routerLink="/dashboard" routerLinkActive="active">
+    <mat-icon>dashboard</mat-icon>
+    Dashboard
+  </button>
+
+  <button mat-button routerLink="/profile" routerLinkActive="active">
+    <mat-icon>person</mat-icon>
+    Profile
+  </button>
+
+  <button mat-button routerLink="/settings" routerLinkActive="active">
+    <mat-icon>settings</mat-icon>
+    Settings
+  </button>
+
+  <button mat-button routerLink="/users" routerLinkActive="active">
+    <mat-icon>people</mat-icon>
+    Users
+  </button>
+
+  <button mat-button (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    Logout
+  </button>
+</mat-toolbar>
+<div class="block-bg">
+  <h1>Welcome to the Buddi!</h1>
+</div>

@@ -1,0 +1,30 @@
+<app-layout>
+  <div class="profile-container">
+    <mat-card>
+      <mat-card-header>
+        <mat-icon mat-card-avatar>person</mat-icon>
+        <mat-card-title>User Profile</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div *ngIf="user; else errorBlock">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Full Name</mat-label>
+            <input matInput [value]="user.name" readonly>
+          </mat-form-field>
+          
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput [value]="user.email" type="email" readonly>
+          </mat-form-field>
+        </div>
+        
+        <ng-template #errorBlock>
+          <div class="error-message">{{ error }}</div>
+        </ng-template>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary">Edit Profile</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</app-layout>

@@ -1,0 +1,15 @@
+mat-toolbar {
+  background-color: #151C37 !important;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+button {
+  margin-left: 8px;
+}
+.block-bg {
+    background: linear-gradient(90deg, rgb(21, 80, 158), rgb(22, 101, 97) 33%, rgb(19, 43, 81));
+    padding: 60px 40px;
+}

@@ -1,0 +1,44 @@
+<app-layout>
+  <div class="settings-container">
+    <mat-card>
+      <mat-card-header>
+        <mat-icon mat-card-avatar>settings</mat-icon>
+        <mat-card-title>Settings</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-tab-group>
+          <mat-tab label="General">
+            <div class="tab-content">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Language</mat-label>
+                <input matInput value="English">
+              </mat-form-field>
+              
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Timezone</mat-label>
+                <input matInput value="UTC-5">
+              </mat-form-field>
+            </div>
+          </mat-tab>
+          
+          <mat-tab label="Preferences">
+            <div class="tab-content">
+              <form (ngSubmit)="saveSettings()">
+                <mat-checkbox [(ngModel)]="darkMode" name="darkMode" class="checkbox-item">
+                  Enable Dark Mode
+                </mat-checkbox>
+                
+                <mat-checkbox [(ngModel)]="notifications" name="notifications" class="checkbox-item">
+                  Enable Notifications
+                </mat-checkbox>
+              </form>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="saveSettings()">Save Settings</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</app-layout>
