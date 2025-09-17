@@ -13,12 +13,12 @@ import { User } from './user.component';
           <mat-label>Name</mat-label>
           <input matInput formControlName="name" required>
         </mat-form-field>
-        
+
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
           <input matInput formControlName="email" type="email" required>
         </mat-form-field>
-        
+
         <mat-form-field appearance="outline">
           <mat-label>Role</mat-label>
           <mat-select formControlName="role" required>
@@ -27,7 +27,7 @@ import { User } from './user.component';
             <mat-option value="User">User</mat-option>
           </mat-select>
         </mat-form-field>
-        
+
         <mat-form-field appearance="outline">
           <mat-label>Status</mat-label>
           <mat-select formControlName="status" required>
@@ -52,20 +52,20 @@ import { User } from './user.component';
       min-width: 400px;
       padding: 8px 0;
     }
-    
+
     mat-dialog-content {
       padding: 0 24px;
       margin: 0;
       max-height: 65vh;
       overflow: auto;
     }
-    
+
     mat-dialog-actions {
       padding: 8px 24px 24px;
       margin: 0;
       justify-content: flex-end;
     }
-    
+
     h2[mat-dialog-title] {
       margin: 0;
       padding: 24px 24px 0;
@@ -73,11 +73,11 @@ import { User } from './user.component';
       font-weight: 500;
       color: #1f2937;
     }
-    
+
     .mat-mdc-form-field {
       width: 100%;
     }
-    
+
     .mat-mdc-raised-button {
       margin-left: 8px;
     }
@@ -95,7 +95,7 @@ export class UserDialogComponent {
     private dialogRef: MatDialogRef<UserDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { user: User | null, isEdit: boolean },
     private fb: FormBuilder
-  ) {}
+  ) { }
 
   onCancel(): void {
     this.dialogRef.close();

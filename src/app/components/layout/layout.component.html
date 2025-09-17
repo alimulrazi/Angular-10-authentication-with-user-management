@@ -15,6 +15,10 @@
           <mat-icon>settings</mat-icon>
           <span>Settings</span>
         </a>
+        <a mat-list-item routerLink="/customers" routerLinkActive="active">
+          <mat-icon>people</mat-icon>
+          <span>Customers</span>
+        </a>
         <a mat-list-item routerLink="/users" routerLinkActive="active">
           <mat-icon>people</mat-icon>
           <span>Users</span>
@@ -26,7 +30,7 @@
         </a>
       </mat-nav-list>
     </mat-sidenav>
-    
+
     <mat-sidenav-content class="main-content">
       <ng-content></ng-content>
     </mat-sidenav-content>

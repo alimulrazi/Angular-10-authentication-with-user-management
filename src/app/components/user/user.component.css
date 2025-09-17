@@ -65,13 +65,21 @@ table {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 0;
   border-bottom: 1px solid #e2e8f0;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
+}
+
+.mat-row {
+  padding: 40px 0 !important;
+  margin-bottom: 80px;
 }
 
 .mat-row:hover {
   background-color: #f1f3f5;
+}
+
+.mat-cell {
+  margin-bottom: 50px;
 }
 
 .filter-container {
@@ -105,35 +113,9 @@ table {
   overflow-x: auto;
 }
 
-.users-table {
-  width: 100%;
-}
-
-.users-table .mat-mdc-header-cell {
-  background-color: #f8fafc;
-  color: #64748b;
-  font-weight: bold;
-  font-size: 14px;
-  text-transform: uppercase;
-  padding: 5px 0;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-.users-table .mat-mdc-cell {
-  padding: 25px 0;
-  border-bottom: 1px solid #f1f5f9;
-  font-size: 14px;
-}
-
-.users-table .mat-mdc-row:hover {
-  background-color: #f1f5f9;
-  transition: background-color 0.2s ease;
-}
-
 .user-cell {
   display: flex;
   align-items: center;
-  gap: 16px;
 }
 
 .user-avatar {

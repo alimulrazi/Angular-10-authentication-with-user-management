@@ -22,6 +22,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -38,6 +41,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { CustomerManagementComponent } from './components/customer-management/customer-management.component';
+import { CustomerDialogComponent } from './components/customer-dialog/customer-dialog.component';
 import { UserComponent } from './components/user/user.component';
 import { UserDialogComponent } from './components/user/user-dialog.component';
 
@@ -52,6 +57,8 @@ import { UserDialogComponent } from './components/user/user-dialog.component';
     SettingsComponent,
     LayoutComponent,
     ConfirmDialogComponent,
+    CustomerManagementComponent,
+    CustomerDialogComponent,
     UserComponent,
     UserDialogComponent
   ],
@@ -79,6 +86,9 @@ import { UserDialogComponent } from './components/user/user-dialog.component';
     MatDividerModule,
     MatProgressSpinnerModule,
     MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSelectModule,
     MatTableModule,
     MatChipsModule,
     MatSelectModule,

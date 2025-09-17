@@ -7,7 +7,11 @@
       </mat-card-header>
       <mat-card-content>
         <mat-tab-group>
-          <mat-tab label="General">
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon class="tab-icon">tune</mat-icon>
+              General
+            </ng-template>
             <div class="tab-content">
               <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Language</mat-label>
@@ -18,27 +22,139 @@
                 <mat-label>Timezone</mat-label>
                 <input matInput value="UTC-5">
               </mat-form-field>
+              
+              <div class="tab-actions">
+                <button mat-raised-button color="primary" (click)="saveGeneralSettings()">Save General Settings</button>
+              </div>
             </div>
           </mat-tab>
           
-          <mat-tab label="Preferences">
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon class="tab-icon">favorite</mat-icon>
+              Preferences
+            </ng-template>
             <div class="tab-content">
-              <form (ngSubmit)="saveSettings()">
-                <mat-checkbox [(ngModel)]="darkMode" name="darkMode" class="checkbox-item">
-                  Enable Dark Mode
-                </mat-checkbox>
+              <mat-checkbox [(ngModel)]="darkMode" name="darkMode" class="checkbox-item">
+                Enable Dark Mode
+              </mat-checkbox>
+              
+              <mat-checkbox [(ngModel)]="notifications" name="notifications" class="checkbox-item">
+                Enable Notifications
+              </mat-checkbox>
+              
+              <div class="tab-actions">
+                <button mat-raised-button color="primary" (click)="savePreferences()">Save Preferences</button>
+              </div>
+            </div>
+          </mat-tab>
+          
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon class="tab-icon">security</mat-icon>
+              Security
+            </ng-template>
+            <div class="tab-content">
+              <form [formGroup]="passwordForm" (ngSubmit)="changePassword()">
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Current Password</mat-label>
+                  <input matInput type="password" formControlName="currentPassword" required>
+                </mat-form-field>
                 
-                <mat-checkbox [(ngModel)]="notifications" name="notifications" class="checkbox-item">
-                  Enable Notifications
-                </mat-checkbox>
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>New Password</mat-label>
+                  <input matInput type="password" formControlName="newPassword" required>
+                </mat-form-field>
+                
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Confirm New Password</mat-label>
+                  <input matInput type="password" formControlName="confirmPassword" required>
+                </mat-form-field>
+                
+                <button mat-raised-button color="primary" type="submit" [disabled]="!passwordForm.valid">
+                  Change Password
+                </button>
               </form>
+            </div>
+          </mat-tab>
+          
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon class="tab-icon">notifications</mat-icon>
+              Notification
+            </ng-template>
+            <div class="tab-content">
+              <p class="notification-subtitle">You will receive notification for the below selected items.</p>
+              
+              <div class="notification-table">
+                <div class="notification-header">
+                  <div class="notification-item"></div>
+                  <div class="notification-column">APP</div>
+                  <div class="notification-column">Email</div>
+                  <div class="notification-column">Browser</div>
+                </div>
+                
+                <div class="notification-row">
+                  <div class="notification-item">New for you</div>
+                  <div class="notification-column">
+                    <mat-checkbox [(ngModel)]="notifications.newForYou.app"></mat-checkbox>
+                  </div>
+                  <div class="notification-column">
+                    <mat-checkbox [(ngModel)]="notifications.newForYou.email"></mat-checkbox>
+                  </div>
+                  <div class="notification-column">
+                    <mat-checkbox [(ngModel)]="notifications.newForYou.browser"></mat-checkbox>
+                  </div>
+                </div>
+                
+                <div class="notification-row">
+                  <div class="notification-item">Account activity</div>
+                  <div class="notification-column">
+                    <mat-checkbox [(ngModel)]="notifications.accountActivity.app"></mat-checkbox>
+                  </div>
+                  <div class="notification-column">
+                    <mat-checkbox [(ngModel)]="notifications.accountActivity.email"></mat-checkbox>
+                  </div>
+                  <div class="notification-column">
+                    <mat-checkbox [(ngModel)]="notifications.accountActivity.browser"></mat-checkbox>
+                  </div>
+                </div>
+                
+                <div class="notification-row">
+                  <div class="notification-item">A new browser used to sign in</div>
+                  <div class="notification-column">
+                    <mat-checkbox [(ngModel)]="notifications.newBrowser.app"></mat-checkbox>
+                  </div>
+                  <div class="notification-column">
+                    <mat-checkbox [(ngModel)]="notifications.newBrowser.email"></mat-checkbox>
+                  </div>
+                  <div class="notification-column">
+                    <mat-checkbox [(ngModel)]="notifications.newBrowser.browser"></mat-checkbox>
+                  </div>
+                </div>
+                
+                <div class="notification-row">
+                  <div class="notification-item">A new device is linked</div>
+                  <div class="notification-column">
+                    <mat-checkbox [(ngModel)]="notifications.newDevice.app"></mat-checkbox>
+                  </div>
+                  <div class="notification-column">
+                    <mat-checkbox [(ngModel)]="notifications.newDevice.email"></mat-checkbox>
+                  </div>
+                  <div class="notification-column">
+                    <mat-checkbox [(ngModel)]="notifications.newDevice.browser"></mat-checkbox>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="tab-actions">
+                <button mat-raised-button color="primary" (click)="saveNotifications()">Save Changes</button>
+                <button mat-button (click)="discardNotifications()">Discard</button>
+              </div>
             </div>
           </mat-tab>
         </mat-tab-group>
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="saveSettings()">Save Settings</button>
-      </mat-card-actions>
     </mat-card>
   </div>
 </app-layout>

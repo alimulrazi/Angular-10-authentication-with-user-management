@@ -1,0 +1,55 @@
+<h2 mat-dialog-title>{{ dialogTitle }}</h2>
+<mat-dialog-content>
+  <form>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>First Name</mat-label>
+        <input matInput [(ngModel)]="customer.firstName" name="firstName" [readonly]="isViewMode" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Last Name</mat-label>
+        <input matInput [(ngModel)]="customer.lastName" name="lastName" [readonly]="isViewMode" required>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="customer.email" name="email" type="email" [readonly]="isViewMode" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Phone</mat-label>
+      <input matInput [(ngModel)]="customer.phone" name="phone" [readonly]="isViewMode" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Status</mat-label>
+      <mat-select [(value)]="customer.status" [disabled]="isViewMode">
+        <mat-option value="Active">Active</mat-option>
+        <mat-option value="Inactive">Inactive</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="form-row" *ngIf="data.mode !== 'add'">
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Orders</mat-label>
+        <input matInput [(ngModel)]="customer.orders" name="orders" type="number" [readonly]="isViewMode">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Total Spent</mat-label>
+        <input matInput [(ngModel)]="customer.totalSpent" name="totalSpent" [readonly]="isViewMode">
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end" *ngIf="!isViewMode">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onSave()">
+    {{ data.mode === 'add' ? 'Add' : 'Save' }}
+  </button>
+</mat-dialog-actions>
+<mat-dialog-actions align="end" *ngIf="isViewMode">
+  <button mat-raised-button color="primary" (click)="onCancel()">Close</button>
+</mat-dialog-actions>
