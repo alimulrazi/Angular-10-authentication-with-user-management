@@ -7,6 +7,7 @@ import { UserDialogComponent } from './user-dialog.component';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { TitleService } from '../../services/title.service';
 import { UserService } from '../../services/user.service';
+import { PermissionService, UserPermissions } from '../../services/permission.service';
 
 export interface User {
   id: number;
@@ -31,6 +32,7 @@ export class UserComponent implements OnInit, AfterViewInit {
   selectedRole: string = '';
   selectedStatus: string = '';
   loading: boolean = false;
+  permissions: UserPermissions;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -39,8 +41,11 @@ export class UserComponent implements OnInit, AfterViewInit {
   constructor(
     private dialog: MatDialog, 
     private titleService: TitleService,
-    private userService: UserService
-  ) { }
+    private userService: UserService,
+    private permissionService: PermissionService
+  ) {
+    this.permissions = this.permissionService.getPermissions();
+  }
 
   ngOnInit(): void {
     this.titleService.setTitle('Users');

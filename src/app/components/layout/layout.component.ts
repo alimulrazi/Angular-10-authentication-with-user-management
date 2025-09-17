@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../../services/auth.service';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { PermissionService, UserPermissions } from '../../services/permission.service';
 
 @Component({
   selector: 'app-layout',
@@ -10,11 +11,16 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent {
+  permissions: UserPermissions;
+
   constructor(
     private router: Router,
     private authService: AuthService,
-    private dialog: MatDialog
-  ) { }
+    private dialog: MatDialog,
+    private permissionService: PermissionService
+  ) {
+    this.permissions = this.permissionService.getPermissions();
+  }
 
   logout(): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {

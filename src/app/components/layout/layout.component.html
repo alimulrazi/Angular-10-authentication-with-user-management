@@ -11,15 +11,15 @@
           <mat-icon>person</mat-icon>
           <span>Profile</span>
         </a>
-        <a mat-list-item routerLink="/settings" routerLinkActive="active">
+        <a mat-list-item routerLink="/settings" routerLinkActive="active" *ngIf="permissions.canViewSettings">
           <mat-icon>settings</mat-icon>
           <span>Settings</span>
         </a>
-        <a mat-list-item routerLink="/customers" routerLinkActive="active">
+        <a mat-list-item routerLink="/customers" routerLinkActive="active" *ngIf="permissions.canViewCustomers">
           <mat-icon>people</mat-icon>
           <span>Customers</span>
         </a>
-        <a mat-list-item routerLink="/users" routerLinkActive="active">
+        <a mat-list-item routerLink="/users" routerLinkActive="active" *ngIf="permissions.canViewUsers">
           <mat-icon>people</mat-icon>
           <span>Users</span>
         </a>
