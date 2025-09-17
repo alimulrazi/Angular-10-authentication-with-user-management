@@ -12,14 +12,19 @@
     Profile
   </button>
 
-  <button mat-button routerLink="/settings" routerLinkActive="active">
+  <button mat-button routerLink="/settings" routerLinkActive="active" *ngIf="hasPermission('canViewSettings')">
     <mat-icon>settings</mat-icon>
     Settings
   </button>
 
-  <button mat-button routerLink="/users" routerLinkActive="active">
+  <button mat-button routerLink="/users" routerLinkActive="active" *ngIf="hasPermission('canViewUsers')">
     <mat-icon>people</mat-icon>
     Users
+  </button>
+
+  <button mat-button routerLink="/customers" routerLinkActive="active" *ngIf="hasPermission('canViewCustomers')">
+    <mat-icon>business</mat-icon>
+    Customers
   </button>
 
   <button mat-button (click)="logout()">

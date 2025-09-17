@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from './user.component';
+import { PermissionService, Role } from '../../services/permission.service';
 
 @Component({
   selector: 'app-user-dialog',
@@ -21,11 +22,14 @@ import { User } from './user.component';
 
         <mat-form-field appearance="outline">
           <mat-label>Role</mat-label>
-          <mat-select formControlName="role" required>
-            <mat-option value="Admin">Admin</mat-option>
-            <mat-option value="Editor">Editor</mat-option>
-            <mat-option value="User">User</mat-option>
+          <mat-select formControlName="role" required [disabled]="!canAssignRoles">
+            <mat-option *ngFor="let role of availableRoles" 
+                       [value]="role.name" 
+                       [disabled]="!permissionService.canAssignRole(role.id)">
+              {{role.name}}
+            </mat-option>
           </mat-select>
+          <mat-hint *ngIf="!canAssignRoles">You don't have permission to assign roles</mat-hint>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -91,11 +95,22 @@ export class UserDialogComponent {
     status: [this.data.user?.status || 'Active', [Validators.required]]
   });
 
+  availableRoles: Role[] = [];
+  canAssignRoles: boolean = false;
+
   constructor(
     private dialogRef: MatDialogRef<UserDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { user: User | null, isEdit: boolean },
-    private fb: FormBuilder
-  ) { }
+    private fb: FormBuilder,
+    public permissionService: PermissionService
+  ) {
+    this.availableRoles = this.permissionService.getAllRoles();
+    this.canAssignRoles = this.permissionService.hasPermission('canAssignRoles');
+    
+    if (!this.canAssignRoles) {
+      this.userForm.get('role')?.disable();
+    }
+  }
 
   onCancel(): void {
     this.dialogRef.close();

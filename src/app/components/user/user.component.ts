@@ -101,6 +101,14 @@ export class UserComponent implements OnInit, AfterViewInit {
         };
         this.users.push(newUser);
         this.dataSource.data = [...this.users];
+        
+        // Assign role if user has permission
+        if (this.permissionService.hasPermission('canAssignRoles')) {
+          const roleId = this.getRoleIdByName(result.role);
+          if (roleId) {
+            this.permissionService.assignRole(newUser.id, roleId, 1); // 1 = current user ID
+          }
+        }
       }
     });
   }
@@ -117,6 +125,14 @@ export class UserComponent implements OnInit, AfterViewInit {
         if (index !== -1) {
           this.users[index] = { ...user, ...result, avatar: this.generateAvatar(result.name) };
           this.dataSource.data = [...this.users];
+          
+          // Update role assignment if user has permission
+          if (this.permissionService.hasPermission('canAssignRoles')) {
+            const roleId = this.getRoleIdByName(result.role);
+            if (roleId) {
+              this.permissionService.assignRole(user.id, roleId, 1); // 1 = current user ID
+            }
+          }
         }
       }
     });
@@ -204,6 +220,12 @@ export class UserComponent implements OnInit, AfterViewInit {
         this.loading = false;
       }
     });
+  }
+
+  private getRoleIdByName(roleName: string): string | null {
+    const roles = this.permissionService.getAllRoles();
+    const role = roles.find(r => r.name === roleName);
+    return role ? role.id : null;
   }
 }
 
