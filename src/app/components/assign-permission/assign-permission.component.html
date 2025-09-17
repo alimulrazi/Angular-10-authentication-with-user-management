@@ -1,0 +1,33 @@
+<app-layout>
+  <div class="assign-permission-container">
+    <h2>Assign Permissions</h2>
+    
+    <mat-form-field appearance="outline" class="user-select">
+      <mat-label>Select User</mat-label>
+      <mat-select [(value)]="selectedUserId" (selectionChange)="onUserSelect()">
+        <mat-option *ngFor="let user of users" [value]="user.id">
+          {{user.name}} ({{user.email}})
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div *ngIf="selectedUserId" class="permissions-form">
+      <h3>Permissions</h3>
+      
+      <div class="permission-checkboxes">
+        <mat-checkbox 
+          *ngFor="let permission of permissionLabels | keyvalue" 
+          [(ngModel)]="permissions[permission.key]"
+          class="permission-checkbox">
+          {{permission.value}}
+        </mat-checkbox>
+      </div>
+
+      <div class="actions">
+        <button mat-raised-button color="primary" (click)="savePermissions()">
+          Save Permissions
+        </button>
+      </div>
+    </div>
+  </div>
+</app-layout>

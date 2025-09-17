@@ -27,6 +27,11 @@
     Customers
   </button>
 
+  <button mat-button routerLink="/assign-permission" routerLinkActive="active" *ngIf="hasPermission('canManagePermissions')">
+    <mat-icon>security</mat-icon>
+    Assign Permission
+  </button>
+
   <button mat-button (click)="logout()">
     <mat-icon>logout</mat-icon>
     Logout

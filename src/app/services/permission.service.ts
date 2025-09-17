@@ -23,12 +23,20 @@ export interface UserRole {
   assignedAt: Date;
 }
 
+export interface UserCustomPermissions {
+  userId: number;
+  permissions: UserPermissions;
+  assignedBy: number;
+  assignedAt: Date;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class PermissionService {
-  private currentUserRole: string = 'editor';
+  private currentUserRole: string = 'admin';
   private userRoles: UserRole[] = [];
+  private userCustomPermissions: UserCustomPermissions[] = [];
 
   private roles: Role[] = [
     {
@@ -74,6 +82,7 @@ export class PermissionService {
 
   constructor() {
     this.loadUserRoles();
+    this.loadUserCustomPermissions();
   }
 
   setUserRole(role: string): void {
@@ -162,5 +171,42 @@ export class PermissionService {
 
   setCurrentUserRole(roleId: string): void {
     this.currentUserRole = roleId;
+  }
+
+  saveUserPermissions(userId: number, permissions: UserPermissions, assignedBy: number): void {
+    const existingIndex = this.userCustomPermissions.findIndex(ucp => ucp.userId === userId);
+    const customPermission: UserCustomPermissions = {
+      userId,
+      permissions,
+      assignedBy,
+      assignedAt: new Date()
+    };
+
+    if (existingIndex >= 0) {
+      this.userCustomPermissions[existingIndex] = customPermission;
+    } else {
+      this.userCustomPermissions.push(customPermission);
+    }
+
+    this.saveUserCustomPermissions();
+  }
+
+  getUserPermissions(userId: number): UserPermissions | null {
+    const customPermission = this.userCustomPermissions.find(ucp => ucp.userId === userId);
+    return customPermission ? customPermission.permissions : null;
+  }
+
+  private loadUserCustomPermissions(): void {
+    const stored = localStorage.getItem('userCustomPermissions');
+    if (stored) {
+      this.userCustomPermissions = JSON.parse(stored).map((ucp: any) => ({
+        ...ucp,
+        assignedAt: new Date(ucp.assignedAt)
+      }));
+    }
+  }
+
+  private saveUserCustomPermissions(): void {
+    localStorage.setItem('userCustomPermissions', JSON.stringify(this.userCustomPermissions));
   }
 }

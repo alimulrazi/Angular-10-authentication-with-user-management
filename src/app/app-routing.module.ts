@@ -6,6 +6,7 @@ import { ProfileComponent } from '../app/components/profile/profile.component';
 import { SettingsComponent } from '../app/components/settings/settings.component';
 import { UserComponent } from '../app/components/user/user.component';
 import { CustomerManagementComponent } from '../app/components/customer-management/customer-management.component';
+import { AssignPermissionComponent } from '../app/components/assign-permission/assign-permission.component';
 import { AuthGuard } from '../../src/app/guards/auth.guard';
 import { PermissionGuard } from '../../src/app/guards/permission.guard';
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard, PermissionGuard], data: { permission: 'canViewSettings' } },
   { path: 'users', component: UserComponent, canActivate: [AuthGuard, PermissionGuard], data: { permission: 'canViewUsers' } },
   { path: 'customers', component: CustomerManagementComponent, canActivate: [AuthGuard, PermissionGuard], data: { permission: 'canViewCustomers' } },
+  { path: 'assign-permission', component: AssignPermissionComponent, canActivate: [AuthGuard, PermissionGuard], data: { permission: 'canManagePermissions' } },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' }
 ];

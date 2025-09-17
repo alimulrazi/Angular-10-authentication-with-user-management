@@ -23,6 +23,10 @@
           <mat-icon>people</mat-icon>
           <span>Users</span>
         </a>
+        <a mat-list-item routerLink="/assign-permission" routerLinkActive="active" *ngIf="permissions.canManagePermissions">
+          <mat-icon>security</mat-icon>
+          <span>Assign Permission</span>
+        </a>
         <mat-divider></mat-divider>
         <a mat-list-item (click)="logout()">
           <mat-icon>logout</mat-icon>

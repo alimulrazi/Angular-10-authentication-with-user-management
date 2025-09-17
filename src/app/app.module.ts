@@ -26,6 +26,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -42,6 +43,7 @@ import { CustomerManagementComponent } from './components/customer-management/cu
 import { CustomerDialogComponent } from './components/customer-dialog/customer-dialog.component';
 import { UserComponent } from './components/user/user.component';
 import { UserDialogComponent } from './components/user/user-dialog.component';
+import { AssignPermissionComponent } from './components/assign-permission/assign-permission.component';
 
 
 @NgModule({
@@ -57,7 +59,8 @@ import { UserDialogComponent } from './components/user/user-dialog.component';
     CustomerManagementComponent,
     CustomerDialogComponent,
     UserComponent,
-    UserDialogComponent
+    UserDialogComponent,
+    AssignPermissionComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +94,8 @@ import { UserDialogComponent } from './components/user/user-dialog.component';
     MatSelectModule,
     MatPaginatorModule,
     MatTooltipModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

@@ -1,0 +1,28 @@
+.assign-permission-container {
+  padding: 20px;
+  max-width: 600px;
+}
+
+.user-select {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.permissions-form {
+  margin-top: 20px;
+}
+
+.permission-checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.permission-checkbox {
+  margin-bottom: 8px;
+}
+
+.actions {
+  margin-top: 20px;
+}
