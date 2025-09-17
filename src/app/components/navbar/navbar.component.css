@@ -12,6 +12,6 @@ button {
 
 .block-bg {
   background: linear-gradient(90deg, rgb(21, 80, 158), rgb(22, 101, 97) 33%, rgb(19, 43, 81));
-  padding: 60px 40px;
+  padding: 10px 40px;
   color: aliceblue;
 }

@@ -90,7 +90,8 @@ import { UserDialogComponent } from './components/user/user-dialog.component';
     MatChipsModule,
     MatSelectModule,
     MatPaginatorModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

@@ -57,7 +57,12 @@
       </div>
 
       <div class="table-container">
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <div *ngIf="loading" class="loading-container">
+          <mat-spinner></mat-spinner>
+          <p>Loading users...</p>
+        </div>
+        
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="!loading">
           <ng-container matColumnDef="select">
             <th mat-header-cell *matHeaderCellDef>
               <mat-checkbox (change)="$event ? masterToggle() : null"

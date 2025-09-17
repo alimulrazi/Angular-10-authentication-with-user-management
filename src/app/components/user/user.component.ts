@@ -6,6 +6,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { UserDialogComponent } from './user-dialog.component';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { TitleService } from '../../services/title.service';
+import { UserService } from '../../services/user.service';
 
 export interface User {
   id: number;
@@ -29,23 +30,21 @@ export class UserComponent implements OnInit, AfterViewInit {
   selectedUsers: User[] = [];
   selectedRole: string = '';
   selectedStatus: string = '';
+  loading: boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  private users: User[] = [
-    { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin', status: 'Active', avatar: 'JD' },
-    { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User', status: 'Active', avatar: 'JS' },
-    { id: 3, name: 'Mike Johnson', email: 'mike@example.com', role: 'Editor', status: 'Inactive', avatar: 'MJ' },
-    { id: 4, name: 'Sarah Wilson', email: 'sarah@example.com', role: 'User', status: 'Active', avatar: 'SW' },
-    { id: 5, name: 'David Brown', email: 'david@example.com', role: 'User', status: 'Active', avatar: 'DB' },
-    { id: 6, name: 'Lisa Garcia', email: 'lisa@example.com', role: 'Editor', status: 'Inactive', avatar: 'LG' }
-  ];
+  private users: User[] = [];
 
-  constructor(private dialog: MatDialog, private titleService: TitleService) { }
+  constructor(
+    private dialog: MatDialog, 
+    private titleService: TitleService,
+    private userService: UserService
+  ) { }
 
   ngOnInit(): void {
     this.titleService.setTitle('Users');
-    this.dataSource.data = this.users;
+    this.loadUsers();
     this.dataSource.filterPredicate = (data: User, filter: string) => {
       const filters = JSON.parse(filter);
       const searchMatch = !filters.search ||
@@ -185,6 +184,21 @@ export class UserComponent implements OnInit, AfterViewInit {
     });
 
     return csvRows.join('\n');
+  }
+
+  private loadUsers(): void {
+    this.loading = true;
+    this.userService.getUsers().subscribe({
+      next: (users) => {
+        this.users = users;
+        this.dataSource.data = this.users;
+        this.loading = false;
+      },
+      error: (error) => {
+        console.error('Error loading users:', error);
+        this.loading = false;
+      }
+    });
   }
 }
 
