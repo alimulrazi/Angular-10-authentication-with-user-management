@@ -19,6 +19,7 @@ export class CustomerManagementComponent implements OnInit {
   displayedColumns: string[] = ['select', 'avatar', 'name', 'email', 'phone', 'orders', 'totalSpent', 'status', 'actions'];
   statusFilter = 'All';
   statusOptions = ['All', 'Active', 'Inactive'];
+  isLoading = true;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -32,9 +33,11 @@ export class CustomerManagementComponent implements OnInit {
   }
 
   loadCustomers(): void {
+    this.isLoading = true;
     this.customerService.getCustomers().subscribe(customers => {
       this.customers = customers;
       this.dataSource.data = this.customers;
+      this.isLoading = false;
     });
   }
 

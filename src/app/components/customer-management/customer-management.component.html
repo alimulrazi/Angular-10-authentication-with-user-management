@@ -35,7 +35,12 @@
       </mat-card-header>
       
       <mat-card-content>
-        <table mat-table [dataSource]="dataSource" class="customer-table">
+        <div *ngIf="isLoading" class="loading-container">
+          <mat-spinner diameter="50"></mat-spinner>
+          <p>Loading customers...</p>
+        </div>
+        
+        <table mat-table [dataSource]="dataSource" class="customer-table" *ngIf="!isLoading">
           <ng-container matColumnDef="select">
             <th mat-header-cell *matHeaderCellDef>
               <mat-checkbox (change)="$event ? masterToggle() : null"
